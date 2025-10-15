@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hair Salon – Charlotte, NC | Braids · Cuts · Color · Styling</title>
+  <meta name="description" content="Hair Salon in Charlotte, NC. Book braids, cuts, color, and styling with master stylists. Friendly service, fair pricing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --rose:#e11d48; --dark:#1f2937; --muted:#6b7280; --bg:#fff5f7;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--dark);background:linear-gradient(180deg,#fff7f9 0%, #ffffff 60%);}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .logo{width:36px;height:36px;border-radius:999px;background:var(--rose);color:#fff;display:grid;place-items:center;}
+    nav a{color:var(--dark);text-decoration:none;margin-left:16px;font-weight:600}
+    .btn{display:inline-block;background:var(--rose);color:#fff;padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:600}
+    .btn.outline{background:#fff;color:var(--dark);border:1px solid #f3cbd5}
+    .hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:28px;align-items:center;padding:40px 0}
+    .hero h1{font-size:40px;line-height:1.15;margin:10px 0}
+    .hero p{color:var(--muted);max-width:48ch}
+    .hero img{width:100%;height:360px;object-fit:cover;border-radius:24px;border:1px solid #fde2e7;box-shadow:0 10px 30px rgba(225,29,72,.12)}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .chip{border-radius:999px;background:#fff;border:1px solid #fde2e7;padding:6px 12px;font-size:13px;color:var(--muted)}
+    h2{font-size:28px;margin:0 0 12px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:#fff;border:1px solid #fde2e7;border-radius:16px;padding:14px}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:10px}
+    .muted{color:var(--muted)}
+    .twocol{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .contact a{color:var(--rose);text-decoration:underline}
+    footer{margin-top:48px;padding:24px 0;border-top:1px solid #fbe4ea;color:var(--muted);font-size:14px}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:640px){
+      .grid{grid-template-columns:1fr}
+      .twocol{grid-template-columns:1fr}
+      .hero img{height:280px}
+      .hero h1{font-size:32px}
+    }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="brand">
+      <div class="logo">HS</div>
+      <div>Hair Salon</div>
+    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit">Visit</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="#contact">Book Now</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="chip">Luxury hair care • Since 2025</span>
+        <h1>Look & feel <span style="color:var(--rose)">stunning</span></h1>
+        <p>From precision cuts to rich color and braiding, our master stylists craft effortless beauty for every guest.</p>
+        <div class="chips">
+          <span class="chip">Braids</span>
+          <span class="chip">Cuts</span>
+          <span class="chip">Color</span>
+          <span class="chip">Styling</span>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn" href="#contact">Book an appointment</a>
+          <a class="btn outline" href="#gallery">View gallery</a>
+        </div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1600&auto=format&fit=crop" alt="Stylist working">
+    </section>
+
+    <section id="services" style="margin-top:18px">
+      <h2>Popular services</h2>
+      <p class="muted">Transparent pricing. Final price may vary based on hair length/complexity.</p>
+      <div class="grid" style="margin-top:12px">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600&auto=format&fit=crop" alt="Balayage">
+          <div style="font-weight:600">Balayage Color</div>
+          <div class="muted">$120–$250 • 150 mins</div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=1600&auto=format&fit=crop" alt="Box braids">
+          <div style="font-weight:600">Box Braids</div>
+          <div class="muted">$140–$220 • 240 mins</div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" alt="Taper fade">
+          <div style="font-weight:600">Taper Fade</div>
+          <div class="muted">$35–$55 • 45 mins</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" style="margin-top:34px">
+      <h2>Style gallery</h2>
+      <div class="grid">
+        <img class="card" style="padding:0" src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1600&auto=format&fit=crop" alt="Style 1">
+        <img class="card" style="padding:0" src="https://images.unsplash.com/photo-1512255965820-4b41bdccea4c?q=80&w=1600&auto=format&fit=crop" alt="Style 2">
+        <img class="card" style="padding:0" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" alt="Style 3">
+      </div>
+    </section>
+
+    <section id="visit" style="margin-top:34px" class="twocol">
+      <div class="card">
+        <h2>Visit us</h2>
+        <p class="muted">123 Main Street, Charlotte, NC</p>
+        <p><a class="btn outline" href="https://www.google.com/maps?q=123+Main+Street,+Charlotte,+NC" target="_blank" rel="noreferrer">Open in Google Maps</a></p>
+        <p class="muted">Parking available on site.</p>
+      </div>
+      <div class="card contact" id="contact">
+        <h2>Contact</h2>
+        <p class="muted">Questions or special requests? We’d love to help.</p>
+        <p><strong>Phone:</strong> <a href="tel:+17045550123">(704) 555-0123</a></p>
+        <p><strong>Email:</strong> <a href="mailto:hello@hairsalon.dev">hello@hairsalon.dev</a></p>
+        <p><a class="btn" href="mailto:hello@hairsalon.dev">Email us</a></p>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Hair Salon — Charlotte, NC
+    </footer>
+  </main>
+
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
