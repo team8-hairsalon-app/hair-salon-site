@@ -9,9 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{ --rose:#e11d48; --dark:#1f2937; --muted:#6b7280; --bg:#fff5f7; }
+    :root{ --rose:#e11d48; --dark:#1f2937; --muted:#6b7280; }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--dark);background:linear-gradient(180deg,#fff7f9 0%, #ffffff 60%);}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--dark);
+      background:linear-gradient(180deg,#fff7f9 0%, #ffffff 60%);
+    }
     .container{max-width:1100px;margin:0 auto;padding:24px}
     header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
@@ -19,32 +24,62 @@
     nav a{color:var(--dark);text-decoration:none;margin-left:16px;font-weight:600}
     .btn{display:inline-block;background:var(--rose);color:#fff;padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:600}
     .btn.outline{background:#fff;color:var(--dark);border:1px solid #f3cbd5}
-    .hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:28px;align-items:center;padding:40px 0}
+    .hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:24px;align-items:center;padding:36px 0}
     .hero h1{font-size:40px;line-height:1.15;margin:10px 0}
     .hero p{color:var(--muted);max-width:48ch}
-    .hero img{width:100%;height:360px;object-fit:cover;border-radius:24px;border:1px solid #fde2e7;box-shadow:0 10px 30px rgba(225,29,72,.12)}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .hero img{width:100%;height:340px;object-fit:cover;border-radius:20px;border:1px solid #fde2e7;box-shadow:0 10px 30px rgba(225,29,72,.12)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
     .chip{border-radius:999px;background:#fff;border:1px solid #fde2e7;padding:6px 12px;font-size:13px;color:var(--muted)}
-    h2{font-size:28px;margin:0 0 12px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .card{background:#fff;border:1px solid #fde2e7;border-radius:16px;padding:14px}
-    .card img{width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:10px}
+    h2{font-size:28px;margin:0 0 10px}
     .muted{color:var(--muted)}
-    .twocol{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    .contact a{color:var(--rose);text-decoration:underline}
-    footer{margin-top:48px;padding:24px 0;border-top:1px solid #fbe4ea;color:var(--muted);font-size:14px}
-    @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid{grid-template-columns:1fr 1fr} }
-    @media (max-width:640px){ .grid{grid-template-columns:1fr} .twocol{grid-template-columns:1fr} .hero img{height:280px} .hero h1{font-size:32px} }
+    footer{margin-top:40px;padding:20px 0;border-top:1px solid #fbe4ea;color:var(--muted);font-size:14px}
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .hero img{height:260px}
+      .hero h1{font-size:32px}
+    }
 
     /* --- Carousel --- */
-    .carousel-wrap { position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: .5rem; align-items: center; }
-    .carousel { display: grid; grid-auto-flow: column; grid-auto-columns: min(80vw, 420px); gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: .25rem; }
-    .carousel::-webkit-scrollbar { height: 8px; }
+    .carousel-wrap {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: .4rem;
+      align-items: center;
+    }
+    .carousel {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: min(86vw, 360px);
+      gap: .6rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: .2rem;
+    }
+    .carousel::-webkit-scrollbar { height: 6px; }
     .carousel::-webkit-scrollbar-thumb { background: #f2c9cf; border-radius: 8px; }
-    .slide { scroll-snap-align: start; border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 4px 22px rgba(0,0,0,.06); border: 1px solid #f8dfe3; }
-    .slide img { width: 100%; height: 240px; object-fit: cover; display: block; }
-    .slide figcaption { padding: .6rem .8rem; font-size: .9rem; color: #3b2b2b; }
-    .nav { appearance: none; border: none; width: 40px; height: 40px; border-radius: 999px; background: #f04b67; color: #fff; font-size: 1.5rem; line-height: 1; display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 14px rgba(240,75,103,.35); }
+    .slide {
+      scroll-snap-align: start;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 18px rgba(0,0,0,.06);
+      border: 1px solid #f8dfe3;
+    }
+    .slide img { width:100%; height:220px; object-fit:cover; display:block; }
+    .slide figcaption { padding:.5rem .65rem; font-size:.9rem; color:#3b2b2b; }
+    .slide .meta { color:var(--muted); font-size:.82rem; margin-top:2px; }
+    .nav {
+      appearance: none; border: none;
+      width: 38px; height: 38px; border-radius: 999px;
+      background: #f04b67; color: #fff; font-size: 1.4rem; line-height: 1;
+      display: grid; place-items: center; cursor: pointer;
+      box-shadow: 0 4px 14px rgba(240,75,103,.35);
+    }
     .nav:hover { filter: brightness(1.05); }
     .nav:disabled { opacity:.4; cursor: default; }
   </style>
@@ -56,8 +91,7 @@
       <div>Hair Salon</div>
     </div>
     <nav>
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
+      <a href="#featured">Styles</a>
       <a href="#visit">Visit</a>
       <a href="#contact">Contact</a>
       <a class="btn" href="#contact">Book Now</a>
@@ -65,6 +99,7 @@
   </header>
 
   <main class="container">
+    <!-- Hero -->
     <section class="hero">
       <div>
         <span class="chip">Luxury hair care • Since 2025</span>
@@ -76,62 +111,75 @@
           <span class="chip">Color</span>
           <span class="chip">Styling</span>
         </div>
-        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
           <a class="btn" href="#contact">Book an appointment</a>
-          <a class="btn outline" href="#gallery">View gallery</a>
+          <a class="btn outline" href="#featured">Browse styles</a>
         </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1600&auto=format&fit=crop" alt="Stylist working">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1600&auto=format&fit=crop" alt="Salon showcase">
     </section>
 
-    <section id="services" style="margin-top:18px">
-      <h2>Popular services</h2>
-      <p class="muted">Transparent pricing. Final price may vary based on hair length/complexity.</p>
-      <div class="grid" style="margin-top:12px">
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600&auto=format&fit=crop" alt="Balayage">
-          <div style="font-weight:600">Balayage Color</div>
-          <div class="muted">$120–$250 • 150 mins</div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=1600&auto=format&fit=crop" alt="Box braids">
-          <div style="font-weight:600">Box Braids</div>
-          <div class="muted">$140–$220 • 240 mins</div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" alt="Taper fade">
-          <div style="font-weight:600">Taper Fade</div>
-          <div class="muted">$35–$55 • 45 mins</div>
-        </div>
-      </div>
-    </section>
+    <!-- Featured Styles -->
+    <section id="featured" style="margin-top:10px">
+      <h2>Our Signature Looks</h2>
+      <p class="muted" style="margin-bottom:8px">Swipe or use the arrows. Final price may vary with hair length/complexity.</p>
 
-    <!-- Carousel gallery with autoplay -->
-    <section id="gallery" style="margin-top:34px">
-      <h2>Style gallery</h2>
       <div class="carousel-wrap">
         <button class="nav prev" aria-label="Previous styles">‹</button>
 
         <div class="carousel" id="styleCarousel" tabindex="0">
+          <!-- Box Braids -->
           <figure class="slide">
-            <img src="https://images.unsplash.com/photo-1559599189-95f32f16c5ad?q=80&w=1600&auto=format&fit=crop" alt="Balayage color with soft waves">
-            <figcaption>Balayage color</figcaption>
+            <img src="https://cdn2.stylecraze.com/wp-content/uploads/2024/03/Woman-with-long-box-braids-hairstyle.jpg.avif" alt="Box Braids">
+            <figcaption>
+              <strong>Box Braids</strong>
+              <div class="meta">$140–$220 • 240 mins</div>
+            </figcaption>
           </figure>
+
+          <!-- Taper Fade -->
           <figure class="slide">
-            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" alt="Box braids, shoulder length">
-            <figcaption>Box braids</figcaption>
+            <img src="https://menshaircuts.com/wp-content/uploads/2023/04/taper-fade-haircut-classy-mid.jpg" alt="Taper Fade">
+            <figcaption>
+              <strong>Taper Fade</strong>
+              <div class="meta">$35–$55 • 45 mins</div>
+            </figcaption>
           </figure>
+
+          <!-- Twist Out -->
           <figure class="slide">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="Taper fade close up">
-            <figcaption>Taper fade</figcaption>
+            <img src="https://i0.wp.com/therighthairstyles.com/wp-content/uploads/2015/01/1-twist-out-bob-on-shoulder-length-natural-hair.jpg?resize=1080%2C1080&ssl=1" alt="Twist Out">
+            <figcaption>
+              <strong>Twist Out</strong>
+              <div class="meta">$50–$80 • 60 mins</div>
+            </figcaption>
           </figure>
+
+          <!-- Balayage Color -->
           <figure class="slide">
-            <img src="https://images.unsplash.com/photo-1522335789203-9d2a5a0c36b8?q=80&w=1600&auto=format&fit=crop" alt="Twist out natural hairstyle">
-            <figcaption>Twist out</figcaption>
+            <img src="https://www.southernliving.com/thmb/bhizQMEOnEnn8FB4NRHwv0KV4io=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/23-cbceff443dc14563ab255356a676a225.jpg" alt="Balayage Color">
+            <figcaption>
+              <strong>Balayage Color</strong>
+              <div class="meta">$120–$250 • 150 mins</div>
+            </figcaption>
           </figure>
+
+          <!-- Silk Curls -->
           <figure class="slide">
-            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1600&auto=format&fit=crop" alt="Classic bob">
-            <figcaption>Classic Bob</figcaption>
+            <img src="https://www.fabmood.com/wp-content/uploads/2025/02/7528741.jpg" alt="Silk Curls">
+            <figcaption>
+              <strong>Silk Curls</strong>
+              <div class="meta">$60–$90 • 75 mins</div>
+            </figcaption>
+          </figure>
+
+          <!-- Classic Bob -->
+          <figure class="slide">
+            <img src="https://theoryhairsalon.com/wp-content/uploads/2024/09/image-3-1.jpg?w=842" alt="Classic Bob">
+            <figcaption>
+              <strong>Classic Bob</strong>
+              <div class="meta">$50–$70 • 60 mins</div>
+            </figcaption>
           </figure>
         </div>
 
@@ -139,14 +187,15 @@
       </div>
     </section>
 
-    <section id="visit" style="margin-top:34px" class="twocol">
-      <div class="card">
+    <!-- Visit & Contact -->
+    <section id="visit" style="margin-top:28px; display:grid; gap:14px; grid-template-columns:1fr 1fr;">
+      <div style="border:1px solid #fde2e7;border-radius:14px;padding:14px;background:#fff">
         <h2>Visit us</h2>
         <p class="muted">123 Main Street, Charlotte, NC</p>
         <p><a class="btn outline" href="https://www.google.com/maps?q=123+Main+Street,+Charlotte,+NC" target="_blank" rel="noreferrer">Open in Google Maps</a></p>
         <p class="muted">Parking available on site.</p>
       </div>
-      <div class="card contact" id="contact">
+      <div id="contact" style="border:1px solid #fde2e7;border-radius:14px;padding:14px;background:#fff">
         <h2>Contact</h2>
         <p class="muted">Questions or special requests? We’d love to help.</p>
         <p><strong>Phone:</strong> <a href="tel:+17045550123">(704) 555-0123</a></p>
@@ -163,7 +212,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Carousel + autoplay
+    // Carousel + autoplay (pause on hover/focus/hidden tab)
     (function () {
       const wrap  = document.querySelector('.carousel-wrap');
       if (!wrap) return;
@@ -174,7 +223,7 @@
 
       function slideWidth(){
         const first = track.querySelector('.slide');
-        return first ? first.getBoundingClientRect().width + 16 : 360;
+        return first ? first.getBoundingClientRect().width + 10 : 340;
       }
       function atEnd(){
         return track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
@@ -184,26 +233,25 @@
         next.disabled = atEnd();
       }
 
-      // Manual nav
       prev.addEventListener('click', () => {
         track.scrollBy({ left: -slideWidth(), behavior: 'smooth' });
-        setTimeout(updateNav, 200);
+        setTimeout(updateNav, 160);
       });
       next.addEventListener('click', () => {
         track.scrollBy({ left:  slideWidth(), behavior: 'smooth' });
-        setTimeout(updateNav, 200);
+        setTimeout(updateNav, 160);
       });
+
       track.addEventListener('scroll', updateNav, { passive:true });
       window.addEventListener('resize', updateNav);
       updateNav();
 
-      // ---- Autoplay ----
-      const INTERVAL_MS = 3500;
+      const INTERVAL_MS = 3200;
       let timer;
 
       function tick(){
-        if (document.hidden) return;                 // pause when tab hidden
-        if (track.matches(':hover') || track === document.activeElement) return; // pause on hover/focus
+        if (document.hidden) return;
+        if (track.matches(':hover') || track === document.activeElement) return;
         if (atEnd()){
           track.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
@@ -213,7 +261,6 @@
       function start(){ stop(); timer = setInterval(tick, INTERVAL_MS); }
       function stop(){ if (timer) clearInterval(timer); }
 
-      // Pause on hover/focus, resume on leave/blur
       track.addEventListener('mouseenter', stop);
       track.addEventListener('mouseleave', start);
       track.addEventListener('focusin',  stop);
