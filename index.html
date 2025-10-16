@@ -9,9 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --rose:#e11d48; --dark:#1f2937; --muted:#6b7280; --bg:#fff5f7;
-    }
+    :root{ --rose:#e11d48; --dark:#1f2937; --muted:#6b7280; --bg:#fff5f7; }
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--dark);background:linear-gradient(180deg,#fff7f9 0%, #ffffff 60%);}
     .container{max-width:1100px;margin:0 auto;padding:24px}
@@ -35,76 +33,20 @@
     .twocol{display:grid;grid-template-columns:1fr 1fr;gap:20px}
     .contact a{color:var(--rose);text-decoration:underline}
     footer{margin-top:48px;padding:24px 0;border-top:1px solid #fbe4ea;color:var(--muted);font-size:14px}
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr 1fr}
-    }
-    @media (max-width:640px){
-      .grid{grid-template-columns:1fr}
-      .twocol{grid-template-columns:1fr}
-      .hero img{height:280px}
-      .hero h1{font-size:32px}
-    }
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:640px){ .grid{grid-template-columns:1fr} .twocol{grid-template-columns:1fr} .hero img{height:280px} .hero h1{font-size:32px} }
 
     /* --- Carousel --- */
-    .carousel-wrap {
-      position: relative;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 0.5rem;
-      align-items: center;
-    }
-    .carousel {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: min(80vw, 420px);
-      gap: 1rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 0.25rem;
-    }
+    .carousel-wrap { position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: .5rem; align-items: center; }
+    .carousel { display: grid; grid-auto-flow: column; grid-auto-columns: min(80vw, 420px); gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: .25rem; }
     .carousel::-webkit-scrollbar { height: 8px; }
     .carousel::-webkit-scrollbar-thumb { background: #f2c9cf; border-radius: 8px; }
-
-    .slide {
-      scroll-snap-align: start;
-      border-radius: 16px;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: 0 4px 22px rgba(0,0,0,.06);
-      border: 1px solid #f8dfe3;
-    }
-    .slide img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      display: block;
-    }
-    .slide figcaption {
-      padding: .6rem .8rem;
-      font-size: .9rem;
-      color: #3b2b2b;
-    }
-
-    /* Nav buttons */
-    .nav {
-      appearance: none;
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: #f04b67;
-      color: #fff;
-      font-size: 1.5rem;
-      line-height: 1;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(240,75,103,.35);
-    }
+    .slide { scroll-snap-align: start; border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 4px 22px rgba(0,0,0,.06); border: 1px solid #f8dfe3; }
+    .slide img { width: 100%; height: 240px; object-fit: cover; display: block; }
+    .slide figcaption { padding: .6rem .8rem; font-size: .9rem; color: #3b2b2b; }
+    .nav { appearance: none; border: none; width: 40px; height: 40px; border-radius: 999px; background: #f04b67; color: #fff; font-size: 1.5rem; line-height: 1; display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 14px rgba(240,75,103,.35); }
     .nav:hover { filter: brightness(1.05); }
-    .nav:disabled { opacity: .4; cursor: default; }
+    .nav:disabled { opacity:.4; cursor: default; }
   </style>
 </head>
 <body>
@@ -164,7 +106,7 @@
       </div>
     </section>
 
-    <!-- ✅ New carousel gallery -->
+    <!-- Carousel gallery with autoplay -->
     <section id="gallery" style="margin-top:34px">
       <h2>Style gallery</h2>
       <div class="carousel-wrap">
@@ -219,39 +161,66 @@
   </main>
 
   <script>
-    document.getElementById('year').textContent=new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Carousel logic
+    // Carousel + autoplay
     (function () {
-      const wrap = document.querySelector('.carousel-wrap');
+      const wrap  = document.querySelector('.carousel-wrap');
       if (!wrap) return;
-      const track = document.getElementById('styleCarousel');
-      const prev = wrap.querySelector('.prev');
-      const next = wrap.querySelector('.next');
 
-      function slideWidth() {
+      const track = document.getElementById('styleCarousel');
+      const prev  = wrap.querySelector('.prev');
+      const next  = wrap.querySelector('.next');
+
+      function slideWidth(){
         const first = track.querySelector('.slide');
         return first ? first.getBoundingClientRect().width + 16 : 360;
       }
-
-      function updateNav() {
+      function atEnd(){
+        return track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+      }
+      function updateNav(){
         prev.disabled = track.scrollLeft <= 4;
-        const max = track.scrollWidth - track.clientWidth - 4;
-        next.disabled = track.scrollLeft >= max;
+        next.disabled = atEnd();
       }
 
+      // Manual nav
       prev.addEventListener('click', () => {
         track.scrollBy({ left: -slideWidth(), behavior: 'smooth' });
         setTimeout(updateNav, 200);
       });
       next.addEventListener('click', () => {
-        track.scrollBy({ left: +slideWidth(), behavior: 'smooth' });
+        track.scrollBy({ left:  slideWidth(), behavior: 'smooth' });
         setTimeout(updateNav, 200);
       });
-
-      track.addEventListener('scroll', updateNav, { passive: true });
+      track.addEventListener('scroll', updateNav, { passive:true });
       window.addEventListener('resize', updateNav);
       updateNav();
+
+      // ---- Autoplay ----
+      const INTERVAL_MS = 3500;
+      let timer;
+
+      function tick(){
+        if (document.hidden) return;                 // pause when tab hidden
+        if (track.matches(':hover') || track === document.activeElement) return; // pause on hover/focus
+        if (atEnd()){
+          track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          track.scrollBy({ left: slideWidth(), behavior: 'smooth' });
+        }
+      }
+      function start(){ stop(); timer = setInterval(tick, INTERVAL_MS); }
+      function stop(){ if (timer) clearInterval(timer); }
+
+      // Pause on hover/focus, resume on leave/blur
+      track.addEventListener('mouseenter', stop);
+      track.addEventListener('mouseleave', start);
+      track.addEventListener('focusin',  stop);
+      track.addEventListener('focusout', start);
+      document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+
+      start();
     })();
   </script>
 </body>
