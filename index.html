@@ -45,6 +45,66 @@
       .hero img{height:280px}
       .hero h1{font-size:32px}
     }
+
+    /* --- Carousel --- */
+    .carousel-wrap {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .carousel {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: min(80vw, 420px);
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 0.25rem;
+    }
+    .carousel::-webkit-scrollbar { height: 8px; }
+    .carousel::-webkit-scrollbar-thumb { background: #f2c9cf; border-radius: 8px; }
+
+    .slide {
+      scroll-snap-align: start;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 22px rgba(0,0,0,.06);
+      border: 1px solid #f8dfe3;
+    }
+    .slide img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .slide figcaption {
+      padding: .6rem .8rem;
+      font-size: .9rem;
+      color: #3b2b2b;
+    }
+
+    /* Nav buttons */
+    .nav {
+      appearance: none;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: #f04b67;
+      color: #fff;
+      font-size: 1.5rem;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(240,75,103,.35);
+    }
+    .nav:hover { filter: brightness(1.05); }
+    .nav:disabled { opacity: .4; cursor: default; }
   </style>
 </head>
 <body>
@@ -104,12 +164,36 @@
       </div>
     </section>
 
+    <!-- ✅ New carousel gallery -->
     <section id="gallery" style="margin-top:34px">
       <h2>Style gallery</h2>
-      <div class="grid">
-        <img class="card" style="padding:0" src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1600&auto=format&fit=crop" alt="Style 1">
-        <img class="card" style="padding:0" src="https://images.unsplash.com/photo-1512255965820-4b41bdccea4c?q=80&w=1600&auto=format&fit=crop" alt="Style 2">
-        <img class="card" style="padding:0" src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" alt="Style 3">
+      <div class="carousel-wrap">
+        <button class="nav prev" aria-label="Previous styles">‹</button>
+
+        <div class="carousel" id="styleCarousel" tabindex="0">
+          <figure class="slide">
+            <img src="https://images.unsplash.com/photo-1559599189-95f32f16c5ad?q=80&w=1600&auto=format&fit=crop" alt="Balayage color with soft waves">
+            <figcaption>Balayage color</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" alt="Box braids, shoulder length">
+            <figcaption>Box braids</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="Taper fade close up">
+            <figcaption>Taper fade</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://images.unsplash.com/photo-1522335789203-9d2a5a0c36b8?q=80&w=1600&auto=format&fit=crop" alt="Twist out natural hairstyle">
+            <figcaption>Twist out</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1600&auto=format&fit=crop" alt="Classic bob">
+            <figcaption>Classic Bob</figcaption>
+          </figure>
+        </div>
+
+        <button class="nav next" aria-label="Next styles">›</button>
       </div>
     </section>
 
@@ -134,6 +218,41 @@
     </footer>
   </main>
 
-  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    // Carousel logic
+    (function () {
+      const wrap = document.querySelector('.carousel-wrap');
+      if (!wrap) return;
+      const track = document.getElementById('styleCarousel');
+      const prev = wrap.querySelector('.prev');
+      const next = wrap.querySelector('.next');
+
+      function slideWidth() {
+        const first = track.querySelector('.slide');
+        return first ? first.getBoundingClientRect().width + 16 : 360;
+      }
+
+      function updateNav() {
+        prev.disabled = track.scrollLeft <= 4;
+        const max = track.scrollWidth - track.clientWidth - 4;
+        next.disabled = track.scrollLeft >= max;
+      }
+
+      prev.addEventListener('click', () => {
+        track.scrollBy({ left: -slideWidth(), behavior: 'smooth' });
+        setTimeout(updateNav, 200);
+      });
+      next.addEventListener('click', () => {
+        track.scrollBy({ left: +slideWidth(), behavior: 'smooth' });
+        setTimeout(updateNav, 200);
+      });
+
+      track.addEventListener('scroll', updateNav, { passive: true });
+      window.addEventListener('resize', updateNav);
+      updateNav();
+    })();
+  </script>
 </body>
 </html>
